@@ -1,7 +1,5 @@
-<x-form.field>
-    <button type="submit"
-            class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600"
-    >
-        {{ $slot }}
-    </button>
-</x-form.field>
+<button type="submit"
+        class="text-slate-500 italic mt-10 bg-gray-300 text-black uppercase font-semibold text-sm py-3 px-10 rounded-lg hover:bg-stone-300"
+>
+    Submit
+</button>
