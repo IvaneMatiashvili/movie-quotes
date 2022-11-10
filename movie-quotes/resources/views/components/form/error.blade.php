@@ -1,5 +1,5 @@
 @props(['name'])
 
 @error($name)
-    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+    <p {{ $attributes->merge(['class' => 'text-red-400 italic absolute text-xs']) }}>{{ $message }}</p>
 @enderror
