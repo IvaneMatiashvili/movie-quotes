@@ -1,13 +1,6 @@
 @props(['name'])
 
-<x-form.field>
-    <x-form.label name="{{ $name }}"/>
-
-    <input class="border border-gray-200 p-2 w-full rounded"
-           name="{{ $name }}"
-           id="{{ $name }}"
-           {{ $attributes(['value' => old($name)]) }}
-    >
-
-    <x-form.error name="{{ $name }}"/>
-</x-form.field>
+<input name="{{ $name }}" id="{{ $name }}"
+       {{ $attributes->merge(['class' => 'block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm']) }}
+        {{ $attributes(['value' => old($name)]) }}
+>
