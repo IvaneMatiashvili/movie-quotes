@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('admin/movies/create', [AdminMovieListController::class, 'create']);
+Route::get('admin/movies/create', [AdminMovieListController::class, 'create'])->name('movies.create');
 Route::post('/admin/movies/create', [AdminMovieListController::class, 'store']);
