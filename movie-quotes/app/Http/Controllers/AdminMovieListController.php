@@ -25,6 +25,8 @@ class AdminMovieListController extends Controller
 			'movie_id' => $movie->id,
 		]);
 
-		return redirect('/admin/movies/create');
+		$url = route('movies.create');
+
+		return redirect($url);
 	}
 }
