@@ -1,6 +1,6 @@
 <x-layout>
     <x-panel>
-        <form method="POST" action="/admin/movies/create" enctype="multipart/form-data" class="w-[90%] h-[80%]">
+        <form method="POST" action="{{ route('movies.create') }}" enctype="multipart/form-data" class="w-[90%] h-[80%]">
             @csrf
             <div>
 
