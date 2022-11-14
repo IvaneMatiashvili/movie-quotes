@@ -11,8 +11,19 @@ class Movie extends Model
 
 	protected $guarded = [];
 
+	protected $with = ['quotes'];
+
 	public function quotes()
 	{
 		return $this->hasMany(Quote::class);
+	}
+
+	public static function boot()
+	{
+		parent::boot();
+
+		static::deleting(function ($movie) {
+			$movie->quotes()->delete();
+		});
 	}
 }
