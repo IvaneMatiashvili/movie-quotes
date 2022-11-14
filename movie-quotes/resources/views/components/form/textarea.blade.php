@@ -5,5 +5,5 @@
                {{ $attributes }}
     >
 
-        {{ old($name) }}
+        {{ old($name) ?? $slot }}
     </textarea>
