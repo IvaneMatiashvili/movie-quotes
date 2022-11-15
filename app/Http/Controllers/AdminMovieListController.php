@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Movie;
 use App\Models\Quote;
 use Illuminate\Support\Str;
@@ -44,7 +45,7 @@ class AdminMovieListController extends Controller
 		]);
 	}
 
-	public function update(Movie $movie, StoreUserRequest $request)
+	public function update(Movie $movie, UpdateUserRequest $request)
 	{
 		$movie->update([
 			'title'     => $request->title,
