@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Movie;
 use App\Models\Quote;
 
@@ -42,7 +43,7 @@ class QuoteController extends Controller
 		]);
 	}
 
-	public function update(Movie $movie, Quote $quote, StoreUserRequest $request)
+	public function update(Movie $movie, Quote $quote, UpdateUserRequest $request)
 	{
 		if (isset($request['thumbnail']))
 		{
