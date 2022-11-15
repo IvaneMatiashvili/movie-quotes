@@ -5,13 +5,16 @@
             @vite('resources/css/app.css')
 
         <body style="font-family: Open Sans, sans-serif" class="w-full h-screen bg-gray-200">
-            @can('admin')
-            <x-header/>
 
+        @guest
+            <x-flex.col class="w-full h-full">
+                {{ $login }}
+            </x-flex.col>
+            @endguest
+            <x-header/>
             <x-flex.col class="w-full h-[90%]">
                 {{ $slot }}
             </x-flex.col>
-            @endcan
 
         </body>
         @if (session()->has('success'))
