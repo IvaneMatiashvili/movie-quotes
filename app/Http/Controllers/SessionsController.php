@@ -2,32 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpFoundation\Response;
+use App\Http\Requests\StoreLoginRequest;
+use Illuminate\Validation\ValidationException;
 
 class SessionsController extends Controller
 {
-	public function store()
+	public function create()
 	{
-		$admin = User::first();
-		$username = Route::current()->parameter('username');
-		$password = Route::current()->parameter('password');
+		return view('sessions.session');
+	}
 
-		if (User::count() && $admin->username === $username && Hash::check($password, $admin->password))
+	public function store(StoreLoginRequest $request)
+	{
+		$attributes = $request->validated();
+
+		if (auth()->attempt($attributes))
 		{
-			auth()->login($admin);
 			return redirect(route('movies'));
 		}
-		else
-		{
-			abort(Response::HTTP_FORBIDDEN);
-		}
+
+		throw ValidationException::withMessages([
+			'username' => 'your provided username could not be verified',
+			'password' => 'your provided password could not be verified',
+		]);
 	}
 
 	public function destroy()
 	{
 		auth()->logout();
+		return redirect(route('login'));
 	}
 }
