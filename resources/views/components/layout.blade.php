@@ -1,3 +1,4 @@
+@auth
 <!doctype html>
             <title>movie-quotes</title>
             <meta charset="utf-8">
@@ -5,12 +6,6 @@
             @vite('resources/css/app.css')
 
         <body style="font-family: Open Sans, sans-serif" class="w-full h-screen bg-gray-200">
-
-        @guest
-            <x-flex.col class="w-full h-full">
-                {{ $login }}
-            </x-flex.col>
-            @endguest
             <x-header/>
             <x-flex.col class="w-full h-[90%]">
                 {{ $slot }}
@@ -32,3 +27,4 @@
             </script>
         @endif
     </html>
+            @endauth
