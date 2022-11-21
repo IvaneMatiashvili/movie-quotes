@@ -14,8 +14,6 @@ class StoreUserRequest extends FormRequest
 	 */
 	public function rules()
 	{
-		/*		return $this->has('title') ? $this->storeMovie() : $this->storeQuote();*/
-
 		if ($this->has('title') && $this->has('quote'))
 		{
 			return $this->storeMovieAndQuote();
