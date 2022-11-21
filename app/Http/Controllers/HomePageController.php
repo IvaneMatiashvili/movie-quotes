@@ -3,42 +3,50 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 
 class HomePageController extends Controller
 {
 	public function index()
 	{
+		$currentLanguage = Config::get('languages')[App::getLocale()];
 		if (Movie::count())
 		{
-			$random_movie = Movie::all()->random();
+			$randomMovie = Movie::all()->random();
 
-			if ($random_movie->quotes->count())
+			if ($randomMovie->quotes->count())
 			{
-				$random_quote = $random_movie->quotes->random();
+				$randomQuote = $randomMovie->quotes->random();
 				return view('home.index', [
-					'random_movie' => $random_movie,
-					'random_quote' => $random_quote,
+					'randomMovie'     => $randomMovie,
+					'randomQuote'     => $randomQuote,
+					'currentLanguage' => $currentLanguage,
 				]);
 			}
 			else
 			{
 				return view('home.index', [
-					'random_movie' => $random_movie,
+					'randomMovie'     => $randomMovie,
+					'currentLanguage' => $currentLanguage,
 				]);
 			}
 		}
 		else
 		{
 			return view('home.index', [
-				'random_movie' => Movie::latest(),
+				'randomMovie'     => Movie::latest(),
+				'currentLanguage' => $currentLanguage,
 			]);
 		}
 	}
 
 	public function show(Movie $movie)
 	{
+		$currentLanguage = Config::get('languages')[App::getLocale()];
 		return view('home.listing', [
-			'movie'        => $movie,
+			'movie'           => $movie,
+			'currentLanguage' => $currentLanguage,
 		]);
 	}
 }
