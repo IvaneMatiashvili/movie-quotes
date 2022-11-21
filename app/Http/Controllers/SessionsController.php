@@ -18,18 +18,20 @@ class SessionsController extends Controller
 
 		if (auth()->attempt($attributes))
 		{
-			return redirect(route('movies'));
+			$lang = request()->segment(count(request()->segments()));
+			return redirect(route('movies', $lang));
 		}
 
 		throw ValidationException::withMessages([
-			'username' => 'your provided username could not be verified',
-			'password' => 'your provided password could not be verified',
+			'username' => __('validation.custom.username.username_does_not_exist'),
+			'password' => __('validation.custom.password.password_does_not_exist'),
 		]);
 	}
 
 	public function destroy()
 	{
 		auth()->logout();
-		return redirect(route('login'));
+		$lang = request()->segment(count(request()->segments()));
+		return redirect(route('login', $lang));
 	}
 }
