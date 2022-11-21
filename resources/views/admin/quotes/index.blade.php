@@ -1,16 +1,16 @@
-<x-layout>
+<x-admin-layout>
     <x-border>
-        @if($quotes->count())
             <x-flex.row class="justify-between">
                 <div>
-                    <p class="ml-8 text-xl italic text-slate-500 w-40">List of quotes for</p>
-                    <p class="ml-8 text-lg italic text-zinc-400 w-40">{{ $movie->title }}</p>
+                    <p class="ml-8 text-xl italic text-slate-500 w-[20rem]">{{ __('content.list_of_quotes_for') }}</p>
+                    <p class="ml-8 break-all w-[30rem] text-lg italic text-zinc-400 w-40">{{ $movie->title }}</p>
                 </div>
 
                 <div>
-                    <a href="{{ route('movies') }}" class="hover:overline italic mr-10 text-lg text-gray-500">go back</a>
+                    <a href="{{ route('movies', request()->segment(count(request()->segments()))) }}" class="hover:overline italic mr-10 text-lg text-gray-500">{{ __('content.go_back') }}</a>
                 </div>
             </x-flex.row>
+            @if($quotes->count())
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="mt-8 flex flex-col">
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -28,15 +28,15 @@
                                                 </div>
                                             </td>
                                             <td class="relative whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="{{ route('quotes.edit',[ $movie->slug, $quote->id] ) }}"
-                                                   class="text-indigo-400 hover:text-indigo-600 italic">Edit</a>
+                                                <a href="{{ route('quotes.edit',[ $movie->slug, $quote->id, request()->segment(count(request()->segments()))] ) }}"
+                                                   class="text-indigo-400 hover:text-indigo-600 italic">{{ __('content.edit') }}</a>
                                             </td>
                                             <td class="relative whitespace-nowrap text-center text-sm font-medium">
                                                 <form method="post"
-                                                      action="{{ route('quotes.destroy',[ $movie->slug, $quote->id] ) }}">
+                                                      action="{{ route('quotes.destroy',[ $movie->slug, $quote->id, request()->segment(count(request()->segments()))] ) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="text-red-300  mr-4 hover:text-red-400 italic">Delete
+                                                    <button class="text-red-300  mr-4 hover:text-red-400 italic">{{ __('content.delete') }}
                                                     </button>
 
                                                 </form>
@@ -65,10 +65,10 @@
             </div>
         @else
             <x-flex.row class="h-full">
-                <p class=" text-slate-400 italic text-xl">There is not any content yet</p>
+                <p class=" text-slate-400 italic text-xl">{{ __('content.no_content') }}</p>
             </x-flex.row>
         @endif
 
     </x-border>
 
-</x-layout>
+</x-admin-layout>
