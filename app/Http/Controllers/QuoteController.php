@@ -27,12 +27,15 @@ class QuoteController extends Controller
 	public function store(Movie $movie, StoreUserRequest $request)
 	{
 		Quote::create([
-			'quote'     => $request->quote,
+			'quote'     => [
+				'en' => $request['quote'],
+				'ka' => $request['quote-ka'],
+			],
 			'movie_id'  => $movie->id,
-			'thumbnail' => $request->file('thumbnail')->store('public/thumbnails'),
+			'thumbnail' => $request->file('thumbnail')->store('thumbnails'),
 		]);
 
-		return back()->with('success', 'Quote has created successfully');
+		return back()->with('success', __('success.quote_store'));
 	}
 
 	public function edit(Movie $movie, Quote $quote)
@@ -53,15 +56,22 @@ class QuoteController extends Controller
 		}
 
 		$quote->update([
-			'quote'          => $request->quote,
+			'quote'          => [
+				'en' => $request['quote'],
+				'ka' => $request['quote-ka'],
+			],
 		]);
 
-		return redirect(route('quotes', $movie->slug))->with('success', 'Quote title has updated successfully');
+		$lang = request()->segment(count(request()->segments()));
+
+		return redirect(route('quotes', [$movie->slug, $lang]))->with('success', __('success.quote_update'));
 	}
 
 	public function destroy(Movie $movie, Quote $quote)
 	{
 		$quote->delete();
-		return redirect(route('quotes', $movie->slug))->with('success', 'Quote has deleted successfully');
+
+		$lang = request()->segment(count(request()->segments()));
+		return redirect(route('quotes', [$movie->slug, $lang]))->with('success', __('success.quote_delete'));
 	}
 }
