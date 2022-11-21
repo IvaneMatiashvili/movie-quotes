@@ -1,4 +1,4 @@
-<x-home-layout>
+<x-home-layout current-language="{{ $currentLanguage }}">
     @if($movie->quotes->count())
         <div class="mt-16 w-full">
             <p class="text-white font-sansation text-3xl"> {{ $movie->title }}</p>
@@ -7,8 +7,8 @@
             @foreach($movie->quotes as $quote)
                 <div class="mt-20">
                     <img src="{{ asset('storage/' . $quote->thumbnail)}}"
-                         alt="thumbnail image" class="h-[24.125rem] w-full">
-                    <x-flex.row class="bg-white h-20 w-full border-2 border-white p-6 rounded-xl rounded-t-none ">
+                         alt="thumbnail image" class="h-[24.125rem] w-full border border-black rounded-lg rounded-b-none">
+                    <x-flex.row class="bg-white h-20 w-full border border-black p-6 rounded-xl rounded-t-none ">
                         <p class="text-black font-sansation text-3xl">"{{ $quote->quote }}"</p>
                     </x-flex.row>
                 </div>
