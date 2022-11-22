@@ -12,7 +12,7 @@ Movie-quotes also has an admin side, where movies and related quotes can be adde
 * [Getting Started](#getting-started)
 * [Migrations](#migration)
 * [Development](#development)
-* [creation of Administrator](#creation-of-administrator)
+* [Creation of Administrator](#creation-of-administrator)
 * [Project Structure](#project-structure)
 
 #
