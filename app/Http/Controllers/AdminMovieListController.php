@@ -13,7 +13,7 @@ class AdminMovieListController extends Controller
 	public function index()
 	{
 		return view('admin.movies.index', [
-			'movies' => Movie::latest()->paginate(5),
+			'movies' => Movie::latest()->paginate(3),
 		]);
 	}
 
@@ -25,17 +25,26 @@ class AdminMovieListController extends Controller
 	public function store(StoreUserRequest $request)
 	{
 		$movie = Movie::create([
-			'title'     => $request->title,
+			'title'     => [
+				'en' => $request['title'],
+				'ka' => $request['title-ka'],
+			],
+
 			'slug'      => Str::lower($request->title),
 		]);
 
 		Quote::create([
-			'quote'     => $request->quote,
+			'quote'     => [
+				'en' => $request['title'],
+				'ka' => $request['title-ka'],
+			],
 			'movie_id'  => $movie->id,
-			'thumbnail' => $request->file('thumbnail')->store('public/thumbnails'),
+			'thumbnail' => $request->file('thumbnail')->store('thumbnails'),
 		]);
 
-		return redirect(route('movies'))->with('success', 'Movie title has created successfully');
+		$lang = request()->segment(count(request()->segments()));
+
+		return redirect(route('movies', $lang))->with('success', __('success.movie_title_store'), );
 	}
 
 	public function edit(Movie $movie)
@@ -48,15 +57,22 @@ class AdminMovieListController extends Controller
 	public function update(Movie $movie, UpdateUserRequest $request)
 	{
 		$movie->update([
-			'title'     => $request->title,
+			'title'     => [
+				'en' => $request['title'],
+				'ka' => $request['title-ka'],
+			],
 			'slug'      => Str::lower($request->title),
 		]);
-		return redirect(route('movies'))->with('success', 'Movie title has updated successfully');
+
+		$lang = request()->segment(count(request()->segments()));
+		return redirect(route('movies', $lang))->with('success', __('success.movie_title_update'));
 	}
 
 	public function destroy(Movie $movie)
 	{
 		$movie->delete();
-		return redirect(route('movies'))->with('success', 'Movie title has deleted successfully');
+
+		$lang = request()->segment(count(request()->segments()));
+		return redirect(route('movies', $lang))->with('success', __('success.movie_title_delete'));
 	}
 }

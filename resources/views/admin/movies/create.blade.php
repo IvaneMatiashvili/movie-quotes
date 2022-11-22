@@ -1,10 +1,10 @@
-<x-layout>
-    <x-panel title="Create content">
-        <form method="POST" action="{{ route('movies') }}" enctype="multipart/form-data" class="w-[90%] h-[80%]">
+<x-admin-layout>
+    <x-panel title="{{  __('content.create_content')  }}">
+        <form method="POST" action="{{ route('movies', request()->segment(count(request()->segments()))) }}" enctype="multipart/form-data" class="w-[90%] h-[80%]">
             @csrf
             <div>
 
-                <x-form.label name="title" title="Movie Title"/>
+                <x-form.label name="title" title="{{ __('content.movie_title_en') }} "/>
 
                 <div class="mt-1">
                     <x-form.input name="title" class="h-12" type="text"/>
@@ -14,7 +14,17 @@
 
             <div class="mt-8">
 
-                <x-form.label name="thumbnail" title="Quote thumbnail"/>
+                <x-form.label name="title-ka" title="{{ __('content.movie_title_ka') }} "/>
+
+                <div class="mt-1">
+                    <x-form.input name="title-ka" class="h-12" type="text"/>
+                    <x-form.error name="title-ka" class="mt-2"/>
+                </div>
+            </div>
+
+            <div class="mt-8">
+
+                <x-form.label name="thumbnail" title="{{ __('content.quote_thumbnail') }} "/>
 
                 <div class="mt-1 h-10 w-64 bg-gray-200 flex items-center">
                     <x-form.input name="thumbnail" type="file"/>
@@ -24,7 +34,7 @@
 
             <div class="mt-8">
 
-                <x-form.label name="quote" title="Quote"/>
+                <x-form.label name="quote" title="{{ __('content.quote_en') }} "/>
 
                 <div class="mt-1">
                     <x-form.textarea name="quote"/>
@@ -32,13 +42,23 @@
                 </div>
             </div>
 
+            <div class="mt-8">
+
+                <x-form.label name="quote-ka" title="{{ __('content.quote_ka') }} "/>
+
+                <div class="mt-1">
+                    <x-form.textarea name="quote-ka"/>
+                    <x-form.error name="quote-ka" class="mt-2"/>
+                </div>
+            </div>
+
             <x-flex.row class="justify-between">
-                <x-form.button title="Submit"/>
+                <x-form.button title="{{ __('content.submit_btn') }} "/>
                 <div class="flex align-center">
-                    <a href="{{ route('movies') }}" class="hover:overline italic mt-10 text-lg text-gray-500">go back</a>
+                    <a href="{{ route('movies', request()->segment(count(request()->segments()))) }}" class="hover:overline italic mt-10 text-lg text-gray-500">  {{ __('content.go_back') }} </a>
                 </div>
 
             </x-flex.row>
         </form>
     </x-panel>
-</x-layout>
+</x-admin-layout>
