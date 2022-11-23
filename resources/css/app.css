@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Sansation';
+    font-family: "Sansation";
     font-style: normal;
     font-weight: 400;
-    src: url('/../public/fonts/Sansation-Regular.ttf') format('truetype');
+    src: url("/public/fonts/Sansation-Regular.ttf") format("truetype");
 }
