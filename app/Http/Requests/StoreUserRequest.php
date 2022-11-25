@@ -14,11 +14,7 @@ class StoreUserRequest extends FormRequest
 	 */
 	public function rules()
 	{
-		if ($this->has('title') && $this->has('quote'))
-		{
-			return $this->storeMovieAndQuote();
-		}
-		elseif ($this->has('title'))
+		if ($this->has('title'))
 		{
 			return $this->storemovie();
 		}
@@ -42,17 +38,6 @@ class StoreUserRequest extends FormRequest
 			'thumbnail'    => 'required|image',
 			'quote'        => 'required|max:600',
 			'quote-ka'     => 'required|max:600',
-		];
-	}
-
-	protected function storeMovieAndQuote()
-	{
-		return [
-			'title'           => ['required', 'max:255', Rule::unique('movies', 'title')],
-			'title-ka'        => ['required', 'max:255', Rule::unique('movies', 'title')],
-			'thumbnail'       => 'required|image',
-			'quote'           => 'required|max:600',
-			'quote-ka'        => 'required|max:600',
 		];
 	}
 }
