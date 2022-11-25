@@ -2,23 +2,25 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Movie;
+use App\Models\Quote;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        // \App\Models\User::factory(10)->create();
+	/**
+	 * Seed the application's database.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		Movie::truncate();
+		Quote::truncate();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-    }
+		Quote::factory(2)->create([
+			'thumbnail' => UploadedFile::fake()->image(uniqid() . '.jpg')->store('thumbnails'),
+		]);
+	}
 }
