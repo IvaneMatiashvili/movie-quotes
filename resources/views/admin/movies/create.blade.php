@@ -22,36 +22,6 @@
                 </div>
             </div>
 
-            <div class="mt-8">
-
-                <x-form.label name="thumbnail" title="{{ __('content.quote_thumbnail') }} "/>
-
-                <div class="mt-1 h-10 w-64 bg-gray-200 flex items-center">
-                    <x-form.input name="thumbnail" type="file"/>
-                    <x-form.error name="thumbnail" class="mt-14"/>
-                </div>
-            </div>
-
-            <div class="mt-8">
-
-                <x-form.label name="quote" title="{{ __('content.quote_en') }} "/>
-
-                <div class="mt-1">
-                    <x-form.textarea name="quote"/>
-                    <x-form.error name="quote" class="mt-2"/>
-                </div>
-            </div>
-
-            <div class="mt-8">
-
-                <x-form.label name="quote-ka" title="{{ __('content.quote_ka') }} "/>
-
-                <div class="mt-1">
-                    <x-form.textarea name="quote-ka"/>
-                    <x-form.error name="quote-ka" class="mt-2"/>
-                </div>
-            </div>
-
             <x-flex.row class="justify-between">
                 <x-form.button title="{{ __('content.submit_btn') }} "/>
                 <div class="flex align-center">

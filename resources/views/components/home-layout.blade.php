@@ -1,8 +1,9 @@
 @props(['current-language'])
 <!doctype html>
-<title>movie-quotes</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Quotes</title>
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 @vite('resources/css/app.css')
 
 <body style="font-family: Open Sans, sans-serif" class="w-full min-h-screen bg-radial-gradient-black">

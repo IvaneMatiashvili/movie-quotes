@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Movie;
-use App\Models\Quote;
 use Illuminate\Support\Str;
 
 class AdminMovieListController extends Controller
@@ -27,16 +26,6 @@ class AdminMovieListController extends Controller
 
 			'slug'      => Str::lower($request->title),
 		]);
-
-		Quote::create([
-			'quote'     => [
-				'en' => $request['title'],
-				'ka' => $request['title-ka'],
-			],
-			'movie_id'  => $movie->id,
-			'thumbnail' => $request->file('thumbnail')->store('thumbnails'),
-		]);
-
 		$lang = request()->segment(count(request()->segments()));
 
 		return redirect(route('movies', $lang))->with('success', __('success.movie_title_store'), );
