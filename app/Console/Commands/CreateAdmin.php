@@ -16,7 +16,7 @@ class CreateAdmin extends Command
 	{
 		$username = $this->ask('username');
 
-		$password = $this->ask('Password');
+		$password = $this->secret('Password');
 
 		$validator = Validator::make([
 			'username' => $username,
