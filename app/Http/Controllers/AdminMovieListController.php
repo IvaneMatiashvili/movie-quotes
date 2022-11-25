@@ -17,11 +17,6 @@ class AdminMovieListController extends Controller
 		]);
 	}
 
-	public function create()
-	{
-		return view('admin.movies.create');
-	}
-
 	public function store(StoreUserRequest $request)
 	{
 		$movie = Movie::create([
