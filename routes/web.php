@@ -30,8 +30,8 @@ Route::middleware('setLocale')->group(function () {
 //login and logout
 Route::middleware('setLocale')->group(function () {
 	Route::view('admin/login', 'sessions.session')->name('login')->middleware('guest');
-	Route::post('admin/login', [AuthController::class, 'store'])->middleware('guest');
-	Route::post('admin/logout', [AuthController::class, 'destroy'])->name('logout')->middleware('auth');
+	Route::post('admin/login', [AuthController::class, 'login'])->middleware('guest');
+	Route::post('admin/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });
 
 //admin movies
