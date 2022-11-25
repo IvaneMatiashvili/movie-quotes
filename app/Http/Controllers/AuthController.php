@@ -5,14 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLoginRequest;
 use Illuminate\Validation\ValidationException;
 
-class SessionsController extends Controller
+class AuthController extends Controller
 {
-	public function create()
-	{
-		return view('sessions.session');
-	}
-
-	public function store(StoreLoginRequest $request)
+	public function login(StoreLoginRequest $request)
 	{
 		$attributes = $request->validated();
 
@@ -28,7 +23,7 @@ class SessionsController extends Controller
 		]);
 	}
 
-	public function destroy()
+	public function logout()
 	{
 		auth()->logout();
 		$lang = request()->segment(count(request()->segments()));
