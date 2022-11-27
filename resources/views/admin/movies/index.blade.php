@@ -8,15 +8,15 @@
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                             <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                 <table class="min-w-full divide-y divide-gray-300 bg-white">
+                                    <thead class="bg-white">
+                                    <tr>
+                                        <th scope="col"
+                                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-10">
+                                            {{ __('content.movie_title') }}
+                                        </th>
+                                    </tr>
+                                    </thead>
                                     @foreach($movies as $movie)
-                                        <thead class="bg-white">
-                                        <tr>
-                                            <th scope="col"
-                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-10">
-                                                {{ __('content.movie_title') }}
-                                            </th>
-                                        </tr>
-                                        </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
                                         <tr>
                                             <td class="break-all block w-[20rem] py-4 pl-4 pr-3 text-sm sm:pl-6">
