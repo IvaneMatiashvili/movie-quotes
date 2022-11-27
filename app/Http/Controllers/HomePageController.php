@@ -13,24 +13,30 @@ class HomePageController extends Controller
 		$currentLanguage = Config::get('languages')[App::getLocale()];
 		if (Movie::count())
 		{
-			$randomMovie = Movie::all()->random();
+			foreach (Movie::all() as $movie)
+			{
+				if ($movie->quotes->count())
+				{
+					for ($i = 0; ; $i++)
+					{
+						$randomMovie = Movie::all()->random();
+						if ($randomMovie->quotes->count())
+						{
+							$randomQuote = $randomMovie->quotes->random();
+							return view('home.index', [
+								'randomMovie'     => $randomMovie,
+								'randomQuote'     => $randomQuote,
+								'currentLanguage' => $currentLanguage,
+							]);
+						}
+					}
+				}
+			}
 
-			if ($randomMovie->quotes->count())
-			{
-				$randomQuote = $randomMovie->quotes->random();
-				return view('home.index', [
-					'randomMovie'     => $randomMovie,
-					'randomQuote'     => $randomQuote,
-					'currentLanguage' => $currentLanguage,
-				]);
-			}
-			else
-			{
-				return view('home.index', [
-					'randomMovie'     => $randomMovie,
-					'currentLanguage' => $currentLanguage,
-				]);
-			}
+			return view('home.index', [
+				'randomMovie'     => Movie::first(),
+				'currentLanguage' => $currentLanguage,
+			]);
 		}
 		else
 		{
