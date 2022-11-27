@@ -1,5 +1,5 @@
 <x-home-layout current-language="{{ $currentLanguage }}">
-    @if($randomMovie->count() && $randomMovie->quotes->count())
+    @if($randomQuote->count())
 
         <div class="ml-4 ">
             <img src="{{ asset('storage/' . $randomQuote->thumbnail)}}"
@@ -10,7 +10,7 @@
         </div>
 
         <a href="{{ route('listing', [$randomMovie->slug, request()->segment(count(request()->segments()))]) }}"
-           class="underline mt-14 font-sansation text-white text-3xl">"{{ $randomMovie->title }}"</a>
+           class="underline mt-14 ml-4 font-sansation text-white text-3xl">"{{ $randomMovie->title }}"</a>
     @else
         <x-flex.row class="h-full">
             <p class=" text-slate-400 italic text-3xl">{{ __('content.no_content') }}</p>
